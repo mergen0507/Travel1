@@ -1,18 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mb-4">Tourist Places</h1>
-
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <h2>Categories</h2>
-            <div class="list-group">
-                @foreach($categories as $category)
-                    <a href="{{ route('categories.show', $category->id) }}" class="list-group-item list-group-item-action">{{ $category->name }}</a>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <h1 class="mb-4">Places in the {{ $category->name }} Category</h1>
 
     <div class="row">
         @foreach($places as $place)
