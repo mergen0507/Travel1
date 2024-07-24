@@ -18,4 +18,3 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::post('/review', [ReviewController::class, 'store']);
 Route::post('/booking', [BookingController::class, 'store']);
-

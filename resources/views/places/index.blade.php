@@ -3,6 +3,15 @@
 @section('content')
     <h1 class="mb-4">Tourist Places</h1>
 
+    <form method="GET" action="{{ route('places.index') }}">
+        <div class="input-group mb-4">
+            <input type="text" name="search" class="form-control" placeholder="Search for places..." value="{{ request('search') }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
     <div class="row mb-4">
         <div class="col-md-12">
             <h2>Categories</h2>
