@@ -21,8 +21,10 @@ class PlaceController extends Controller
             });
         })->get();
 
+        $topRatedPlaces = Place::orderBy('likes', 'desc')->take(5)->get();
+
         $categories = Category::all();
-        return view('places.index', compact('places', 'categories', 'search', 'category_id'));
+        return view('places.index', compact('places', 'categories', 'search', 'category_id', 'topRatedPlaces'));
     }
 
     public function show($id)
@@ -48,12 +50,16 @@ class PlaceController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'country' => 'required|string|max:255',
+            'hotel_recommendations' => 'required|string',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $place = Place::create([
             'name' => $request->name,
             'description' => $request->description,
+            'country' => $request->country,
+            'hotel_recommendations' => $request->hotel_recommendations,
             'likes' => 0,
         ]);
 
