@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ url('/') }}">Tourism Website</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
@@ -37,7 +37,7 @@
 <main class="container mt-4">
     @yield('content')
 </main>
-<footer class="footer bg-light text-center py-3 mt-4">
+<footer class="footer bg-dark text-light text-center py-3 mt-4">
     <div class="container">
         <span>&copy; 2024 Tourism Website</span>
     </div>

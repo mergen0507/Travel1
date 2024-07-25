@@ -75,4 +75,5 @@ class PlaceController extends Controller
 
         return redirect()->route('places.index');
     }
+
 }

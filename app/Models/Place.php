@@ -9,7 +9,9 @@ class Place extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'likes'];
+    protected $fillable = [
+        'name', 'description', 'likes', 'country', 'hotels'
+    ];
 
     public function reviews()
     {
@@ -36,5 +38,6 @@ class Place extends Model
         return $this->belongsToMany(Category::class);
     }
 }
+
 
 
