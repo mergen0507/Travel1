@@ -1,25 +1,29 @@
 <?php $__env->startSection('content'); ?>
     <h1 class="mb-4">Tourist Places</h1>
 
-    <form method="GET" action="<?php echo e(route('places.index')); ?>">
-        <div class="input-group mb-4">
+    <form method="GET" action="<?php echo e(route('places.index')); ?>" class="mb-4">
+        <div class="input-group mb-3">
             <input type="text" name="search" class="form-control" placeholder="Search for places..." value="<?php echo e(request('search')); ?>">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
             </div>
         </div>
-    </form>
 
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <h2>Categories</h2>
-            <div class="list-group">
+        <div class="form-group">
+            <label for="category">Filter by Category:</label>
+            <select name="category" id="category" class="form-control">
+                <option value="">All Categories</option>
                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <a href="<?php echo e(route('categories.show', $category->id)); ?>" class="list-group-item list-group-item-action"><?php echo e($category->name); ?></a>
+                    <option value="<?php echo e($category->id); ?>" <?php echo e(request('category') == $category->id ? 'selected' : ''); ?>>
+                        <?php echo e($category->name); ?>
+
+                    </option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
+            </select>
         </div>
-    </div>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
 
     <div class="row">
         <?php $__currentLoopData = $places; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

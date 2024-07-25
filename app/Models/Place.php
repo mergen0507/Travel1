@@ -37,3 +37,4 @@ class Place extends Model
     }
 }
 
+

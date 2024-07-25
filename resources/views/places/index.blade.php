@@ -3,29 +3,28 @@
 @section('content')
     <h1 class="mb-4">Tourist Places</h1>
 
-    <form method="GET" action="{{ route('places.index') }}">
-        <div class="input-group mb-4">
+    <form method="GET" action="{{ route('places.index') }}" class="mb-4">
+        <div class="input-group mb-3">
             <input type="text" name="search" class="form-control" placeholder="Search for places..." value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
             </div>
         </div>
-    </form>
 
-    <div class="row mb-4">
-        <div class="col-md-12">
-<<<<<<< HEAD
-            <h2>Categ</h2>
-=======
-            <h2>Catego</h2>
->>>>>>> fc8b6bc0d7d49c2517e4ad3624a6e5fbf8a54536
-            <div class="list-group">
+        <div class="form-group">
+            <label for="category">Filter by Category:</label>
+            <select name="category" id="category" class="form-control">
+                <option value="">All Categories</option>
                 @foreach($categories as $category)
-                    <a href="{{ route('categories.show', $category->id) }}" class="list-group-item list-group-item-action">{{ $category->name }}</a>
+                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
                 @endforeach
-            </div>
+            </select>
         </div>
-    </div>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
 
     <div class="row">
         @foreach($places as $place)
