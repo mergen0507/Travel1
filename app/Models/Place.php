@@ -9,9 +9,17 @@ class Place extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name', 'description', 'likes', 'country', 'hotels'
-    ];
+    protected $fillable = ['name', 'description', 'likes', 'country_id'];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function hotels()
+    {
+        return $this->hasMany(Hotel::class);
+    }
 
     public function reviews()
     {
@@ -23,21 +31,18 @@ class Place extends Model
         return $this->hasMany(Photo::class);
     }
 
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
-    }
-
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
-
     public function categories()
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating');
+    }
 }
+
+
 
 
 

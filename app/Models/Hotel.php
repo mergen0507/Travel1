@@ -1,25 +1,18 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class Hotel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'place_id', 'rating', 'comment'];
+    protected $fillable = ['name', 'address', 'place_id'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    // Bir otel bir yere aittir
     public function place()
     {
         return $this->belongsTo(Place::class);
     }
 }
-
-

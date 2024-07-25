@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 
@@ -21,15 +22,17 @@ class PlaceController extends Controller
             });
         })->get();
 
-        $topRatedPlaces = Place::orderBy('likes', 'desc')->take(5)->get();
-
         $categories = Category::all();
-        return view('places.index', compact('places', 'categories', 'search', 'category_id', 'topRatedPlaces'));
+        $topPlaces = Place::with('reviews')->get()->sortByDesc(function($place) {
+            return $place->averageRating();
+        })->take(3);
+
+        return view('places.index', compact('places', 'categories', 'search', 'category_id', 'topPlaces'));
     }
 
     public function show($id)
     {
-        $place = Place::findOrFail($id);
+        $place = Place::with(['country', 'hotels', 'reviews'])->findOrFail($id);
         return view('places.show', compact('place'));
     }
 
@@ -42,7 +45,8 @@ class PlaceController extends Controller
 
     public function create()
     {
-        return view('places.create');
+        $countries = Country::all();
+        return view('places.create', compact('countries'));
     }
 
     public function store(Request $request)
@@ -50,17 +54,15 @@ class PlaceController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'country' => 'required|string|max:255',
-            'hotel_recommendations' => 'required|string',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'country_id' => 'required|exists:countries,id',
         ]);
 
         $place = Place::create([
             'name' => $request->name,
             'description' => $request->description,
-            'country' => $request->country,
-            'hotel_recommendations' => $request->hotel_recommendations,
             'likes' => 0,
+            'country_id' => $request->country_id,
         ]);
 
         if ($request->hasFile('photo')) {
@@ -75,5 +77,5 @@ class PlaceController extends Controller
 
         return redirect()->route('places.index');
     }
-
 }
+
