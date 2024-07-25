@@ -26,7 +26,7 @@
         <button type="submit" class="btn btn-primary">Filter</button>
     </form>
 
-    <h2 class="mb-4">Top Rated Places</h2>
+    <h2 class="mb-4">Top Rate Places</h2>
     <div class="row border-bottom">
         @foreach($topPlaces as $place)
             <div class="col-md-4 mb-4">
