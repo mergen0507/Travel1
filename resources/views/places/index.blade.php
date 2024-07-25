@@ -15,7 +15,7 @@
     <div class="row mb-4">
         <div class="col-md-12">
 <<<<<<< HEAD
-            <h2>Categories</h2>
+            <h2>Categ</h2>
 =======
             <h2>Catego</h2>
 >>>>>>> fc8b6bc0d7d49c2517e4ad3624a6e5fbf8a54536
