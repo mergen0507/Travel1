@@ -24,7 +24,7 @@ class PlaceController extends Controller
         $categories = Category::all();
         $topPlaces = Place::with('reviews')->get()->sortByDesc(function($place) {
             return $place->averageRating();
-        })->take(5); // En sevilen 5 yer
+        })->take(3); 
 
         return view('places.index', compact('places', 'categories', 'search', 'category_id', 'topPlaces'));
     }
