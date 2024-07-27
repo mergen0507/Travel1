@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Models\Category;
 use App\Models\Country;
-use App\Models\Photo;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -32,7 +31,7 @@ class PlaceController extends Controller
 
     public function show($id)
     {
-        $place = Place::with(['country', 'hotels', 'reviews'])->findOrFail($id);
+        $place = Place::with(['country', 'hotels', 'reviews', 'photos'])->findOrFail($id);
         return view('places.show', compact('place'));
     }
 
