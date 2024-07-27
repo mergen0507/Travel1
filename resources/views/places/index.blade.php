@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mb-4">Tourist Places</h1>
+    <h1 class="mb-4">Explore Tourist Places</h1>
 
     <form method="GET" action="{{ route('places.index') }}" class="mb-4">
         <div class="input-group mb-3">
@@ -26,8 +26,8 @@
         <button type="submit" class="btn btn-primary">Filter</button>
     </form>
 
-    <h2 class="mb-4">Top Rate Places</h2>
-    <div class="row border-bottom">
+    <h2 class="mb-4">Top Rated Places</h2>
+    <div class="row">
         @foreach($topPlaces as $place)
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -44,9 +44,10 @@
         @endforeach
     </div>
 
+    <h2 class="mb-4">All Places</h2>
     <div class="row">
         @foreach($places as $place)
-            <div class="col-md-4 mt-4 mb-4">
+            <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="{{ $place->photos->first()->path ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgj4qmAON5oawuOktANXAF5nqOxZ-jhGTfSw&s' }}" class="card-img-top" alt="{{ $place->name }}">
                     <div class="card-body">

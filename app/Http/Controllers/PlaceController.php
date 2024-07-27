@@ -15,17 +15,17 @@ class PlaceController extends Controller
         $category_id = $request->input('category');
 
         $places = Place::when($search, function ($query, $search) {
-            return $query->where('name', 'like', "%{$search}%");
+            return $query->where('places.name', 'like', "%{$search}%");
         })->when($category_id, function ($query, $category_id) {
             return $query->whereHas('categories', function ($query) use ($category_id) {
-                $query->where('id', $category_id);
+                $query->where('categories.id', $category_id);
             });
         })->get();
 
         $categories = Category::all();
         $topPlaces = Place::with('reviews')->get()->sortByDesc(function($place) {
             return $place->averageRating();
-        })->take(3);
+        })->take(5); // En sevilen 5 yer
 
         return view('places.index', compact('places', 'categories', 'search', 'category_id', 'topPlaces'));
     }
@@ -78,4 +78,3 @@ class PlaceController extends Controller
         return redirect()->route('places.index');
     }
 }
-

@@ -10,7 +10,7 @@ class Hotel extends Model
 
     protected $fillable = ['name', 'address', 'place_id'];
 
-    // Bir otel bir yere aittir
+
     public function place()
     {
         return $this->belongsTo(Place::class);

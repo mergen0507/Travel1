@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-    <h1 class="mb-4">Tourist Places</h1>
+    <h1 class="mb-4">Explore Tourist Places</h1>
 
     <form method="GET" action="<?php echo e(route('places.index')); ?>" class="mb-4">
         <div class="input-group mb-3">
@@ -26,7 +26,7 @@
     </form>
 
     <h2 class="mb-4">Top Rated Places</h2>
-    <div class="row border-bottom">
+    <div class="row">
         <?php $__currentLoopData = $topPlaces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -43,9 +43,10 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 
+    <h2 class="mb-4">All Places</h2>
     <div class="row">
         <?php $__currentLoopData = $places; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-md-4 mt-4 mb-4">
+            <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="<?php echo e($place->photos->first()->path ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgj4qmAON5oawuOktANXAF5nqOxZ-jhGTfSw&s'); ?>" class="card-img-top" alt="<?php echo e($place->name); ?>">
                     <div class="card-body">
